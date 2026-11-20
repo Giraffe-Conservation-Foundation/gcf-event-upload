@@ -11,4 +11,7 @@ wt-compiler = ">=0.8.2,<0.9.0"
 graphviz = "*"
 go-yq = "*"
 python = "3.12.*"
+
+[pypi-dependencies]
+# wt-compiler runs `python -m ruff format`; conda-forge ruff has no Python module
 ruff = "*"
