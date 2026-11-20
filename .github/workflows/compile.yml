@@ -36,6 +36,9 @@ jobs:
             --no-progress --clobber \
             --env-overrides wt-compiler-env-overrides.toml
 
+      - name: Show compiled output
+        run: ls -la ecoscope-workflows-gcf-event-upload-workflow/
+
       - name: Commit compiled output
         run: |
           git config user.name "github-actions[bot]"
