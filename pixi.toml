@@ -7,8 +7,9 @@ platforms = ['linux-64', 'osx-arm64', 'win-64']
 published = false
 
 [dependencies]
-# 0.8.2 exactly: 0.8.3 calls `python -m ruff` but the conda ruff it pulls has no Python module
-wt-compiler = "0.8.2.*"
+wt-compiler = ">=0.8.2,<0.9.0"
 graphviz = "*"
 go-yq = "*"
 python = "3.12.*"
+# wt-compiler runs `python -m ruff`; conda-forge ruff >=0.17 (Oct 2026) ships only the binary
+ruff = "<0.17"
