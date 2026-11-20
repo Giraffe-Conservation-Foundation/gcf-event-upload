@@ -10,3 +10,5 @@ published = false
 wt-compiler = ">=0.8.2,<0.9.0"
 graphviz = "*"
 go-yq = "*"
+python = "3.12.*"
+ruff = "*"
