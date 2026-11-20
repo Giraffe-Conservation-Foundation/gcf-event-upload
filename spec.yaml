@@ -3,9 +3,13 @@ requirements:
   - name: ecoscope-platform
     version: ">=2.16.0, <2.17.0"
     channel: https://repo.prefix.dev/ecoscope-workflows/
+  # Loaded straight from GitHub (pinned commit = ext-gcf v0.2.1+) rather than the
+  # prefix.dev channel, whose sharded index lagged the 0.2.1 upload.
+  - name: python
+    version: "3.12.*"
   - name: ecoscope-workflows-ext-gcf
-    version: "0.2.1"
-    channel: https://repo.prefix.dev/ecoscope-workflows-gcf/
+    git: https://github.com/Giraffe-Conservation-Foundation/ecoscope-workflows-ext-gcf.git
+    rev: 0aa3553748f19f1ecbeb6670c68df8628efd66a7
 
 rjsf-overrides:
   properties:
