@@ -28,6 +28,9 @@ jobs:
 
       - name: Compile workflow
         run: |
+          # prefix.dev's sharded index for ecoscope-workflows-gcf lagged the 0.2.x
+          # uploads (Nov 2026); the plain repodata.json is current, so read that.
+          pixi config set --global repodata-config.disable-sharded true
           pixi update --manifest-path pixi.toml
           pixi run --manifest-path pixi.toml wt-compiler compile \
             --spec spec.yaml \
