@@ -7,7 +7,6 @@ on:
     paths:
       - spec.yaml
       - pixi.toml
-      - layout.json
       - .github/workflows/compile.yml
 
 jobs:
@@ -28,18 +27,14 @@ jobs:
           pixi-version: v0.60.0
 
       - name: Compile workflow
-        # --update writes the compiled pixi.lock and bumps VERSION.yaml.
-        # Ecoscope Desktop needs both (a 0.0.0 template is not accepted).
         run: |
-          pixi install --manifest-path pixi.toml
-          pixi run --manifest-path pixi.toml dot -c
+          pixi update --manifest-path pixi.toml
           pixi run --manifest-path pixi.toml wt-compiler compile \
             --spec spec.yaml \
             --pkg-name-prefix=ecoscope-workflows \
             --results-env-var=ECOSCOPE_WORKFLOWS_RESULTS \
-            --no-progress --clobber --update
-          ls -la ecoscope-workflows-gcf-event-upload-workflow/
-          cat ecoscope-workflows-gcf-event-upload-workflow/VERSION.yaml
+            --no-progress --clobber \
+            --env-overrides wt-compiler-env-overrides.toml
 
       - name: Commit compiled output
         run: |
