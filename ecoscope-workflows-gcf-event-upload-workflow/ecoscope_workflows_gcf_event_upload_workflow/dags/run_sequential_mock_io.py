@@ -124,6 +124,7 @@ def main(params: dict[str, Any], validate_params_schema: bool = True):
         .partial(
             details=workflow_details,
             widgets=[summary_widget],
+            time_range=None,
             **(params.get("upload_dashboard") or {}),
         )
         .call()

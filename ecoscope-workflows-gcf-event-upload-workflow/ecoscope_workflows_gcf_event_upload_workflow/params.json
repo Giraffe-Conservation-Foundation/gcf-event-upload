@@ -72,24 +72,6 @@
       ],
       "type": "object",
       "title": "Event Upload"
-    },
-    "upload_dashboard": {
-      "additionalProperties": false,
-      "properties": {
-        "time_range": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/TimeRange"
-            }
-          ],
-          "default": null,
-          "title": "Time Range",
-          "description": "Time range filter"
-        }
-      },
-      "required": [],
-      "type": "object",
-      "title": "Create Dashboard"
     }
   },
   "$defs": {
@@ -104,63 +86,6 @@
         "name"
       ],
       "title": "EarthRangerConnection",
-      "type": "object"
-    },
-    "TimeRange": {
-      "properties": {
-        "since": {
-          "format": "date-time",
-          "title": "Since",
-          "type": "string"
-        },
-        "until": {
-          "format": "date-time",
-          "title": "Until",
-          "type": "string"
-        },
-        "timezone": {
-          "$ref": "#/$defs/TimezoneInfo"
-        },
-        "time_format": {
-          "default": "%d %b %Y %H:%M:%S",
-          "title": "Time Format",
-          "type": "string"
-        }
-      },
-      "required": [
-        "since",
-        "until",
-        "timezone"
-      ],
-      "title": "TimeRange",
-      "type": "object"
-    },
-    "TimezoneInfo": {
-      "properties": {
-        "label": {
-          "title": "Label",
-          "type": "string"
-        },
-        "tzCode": {
-          "title": "Tzcode",
-          "type": "string"
-        },
-        "name": {
-          "title": "Name",
-          "type": "string"
-        },
-        "utc": {
-          "title": "Utc",
-          "type": "string"
-        }
-      },
-      "required": [
-        "label",
-        "tzCode",
-        "name",
-        "utc"
-      ],
-      "title": "TimezoneInfo",
       "type": "object"
     }
   },
@@ -182,8 +107,7 @@
     "ui:order": [
       "workflow_details",
       "er_client_name",
-      "event_upload",
-      "upload_dashboard"
+      "event_upload"
     ]
   },
   "additionalProperties": false
