@@ -3,6 +3,7 @@
 [workspace]
 name = "ecoscope-workflows-gcf-event-upload-workflow"
 channels = [
+    "https://repo.prefix.dev/ecoscope-workflows-gcf/",
     "https://repo.prefix.dev/ecoscope-workflows/",
     "conda-forge",
     "microsoft",
@@ -22,9 +23,9 @@ linux = "4.4.0"
 version = ">=2.16.0,<2.17.0"
 channel = "https://repo.prefix.dev/ecoscope-workflows/"
 
-[dependencies.python]
-version = "3.12.*"
-channel = "https://conda.anaconda.org/conda-forge/"
+[dependencies.ecoscope-workflows-ext-gcf]
+version = "==0.2.1"
+channel = "https://repo.prefix.dev/ecoscope-workflows-gcf/"
 
 [dependencies.click]
 version = ">=8.0.0,<9.0.0"
@@ -53,10 +54,6 @@ channel = "https://repo.prefix.dev/ecoscope-workflows/"
 [dependencies.pydeck]
 version = "==0.9.2"
 channel = "https://conda.anaconda.org/conda-forge/"
-
-[pypi-dependencies.ecoscope-workflows-ext-gcf]
-git = "https://github.com/Giraffe-Conservation-Foundation/ecoscope-workflows-ext-gcf.git"
-rev = "0aa3553748f19f1ecbeb6670c68df8628efd66a7"
 
 [feature.runner.dependencies.wt-runner]
 version = ">=0.3.0,<1.0.0"
