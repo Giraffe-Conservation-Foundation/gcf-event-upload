@@ -36,6 +36,14 @@ jobs:
             --no-progress --clobber \
             --env-overrides wt-compiler-env-overrides.toml
 
+      - name: Lock compiled workflow environment
+        # Ecoscope Desktop only accepts a template whose ecoscope-workflows-*
+        # folder contains BOTH pixi.toml and pixi.lock (checked in Desktop's
+        # code, Nov 2026). wt-compiler only writes pixi.lock with --update.
+        run: |
+          pixi lock --manifest-path ecoscope-workflows-gcf-event-upload-workflow/pixi.toml
+          ls -la ecoscope-workflows-gcf-event-upload-workflow/
+
       - name: Commit compiled output
         run: |
           git config user.name "github-actions[bot]"

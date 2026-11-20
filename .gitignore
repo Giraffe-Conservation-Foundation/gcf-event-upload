@@ -1,4 +1,4 @@
 .pixi/
 *.pyc
 __pycache__/
-pixi.lock
+/pixi.lock
