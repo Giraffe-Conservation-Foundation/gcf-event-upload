@@ -1,0 +1,190 @@
+{
+  "properties": {
+    "workflow_details": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Workflow Name",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Workflow Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "description": "Add information that will help to differentiate this workflow from another.",
+      "title": "Workflow Details"
+    },
+    "er_client_name": {
+      "additionalProperties": false,
+      "properties": {
+        "data_source": {
+          "$ref": "#/$defs/EarthRangerConnection",
+          "title": "",
+          "description": "Select one of your configured data sources."
+        }
+      },
+      "required": [
+        "data_source"
+      ],
+      "type": "object",
+      "title": "Data Source"
+    },
+    "event_upload": {
+      "additionalProperties": false,
+      "properties": {
+        "event_type": {
+          "title": "Event type",
+          "type": "string",
+          "description": "The event type to upload. Enter its value (e.g. giraffe_survey_encounter_nam) or its name as shown in EarthRanger."
+        },
+        "action": {
+          "default": "Check file only",
+          "enum": [
+            "Make template",
+            "Check file only",
+            "Check and import"
+          ],
+          "title": "Action",
+          "type": "string",
+          "description": "Make template: save a blank CSV template and field guide for this event type. Check file only: check your filled CSV and list any problems (nothing is sent). Check and import: check the CSV, then create the rows that passed in EarthRanger."
+        },
+        "csv_path": {
+          "default": "",
+          "title": "CSV file (full path)",
+          "type": "string",
+          "description": "Full path to your filled CSV on this computer (not needed for Make template), e.g. C:\\Users\\me\\Documents\\sightings.csv"
+        },
+        "time_zone": {
+          "default": "UTC",
+          "title": "Time zone of the times in your CSV",
+          "type": "string",
+          "description": "Time zone of the times in your CSV, e.g. Africa/Johannesburg, Africa/Windhoek, Africa/Nairobi or UTC. Times with their own zone (ending in Z or +02:00) keep it."
+        }
+      },
+      "required": [
+        "event_type"
+      ],
+      "type": "object",
+      "title": "Event Upload"
+    },
+    "upload_dashboard": {
+      "additionalProperties": false,
+      "properties": {
+        "time_range": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/TimeRange"
+            }
+          ],
+          "default": null,
+          "title": "Time Range",
+          "description": "Time range filter"
+        }
+      },
+      "required": [],
+      "type": "object",
+      "title": "Create Dashboard"
+    }
+  },
+  "$defs": {
+    "EarthRangerConnection": {
+      "properties": {
+        "name": {
+          "title": "Data Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "EarthRangerConnection",
+      "type": "object"
+    },
+    "TimeRange": {
+      "properties": {
+        "since": {
+          "format": "date-time",
+          "title": "Since",
+          "type": "string"
+        },
+        "until": {
+          "format": "date-time",
+          "title": "Until",
+          "type": "string"
+        },
+        "timezone": {
+          "$ref": "#/$defs/TimezoneInfo"
+        },
+        "time_format": {
+          "default": "%d %b %Y %H:%M:%S",
+          "title": "Time Format",
+          "type": "string"
+        }
+      },
+      "required": [
+        "since",
+        "until",
+        "timezone"
+      ],
+      "title": "TimeRange",
+      "type": "object"
+    },
+    "TimezoneInfo": {
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "tzCode": {
+          "title": "Tzcode",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "utc": {
+          "title": "Utc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "tzCode",
+        "name",
+        "utc"
+      ],
+      "title": "TimezoneInfo",
+      "type": "object"
+    }
+  },
+  "uiSchema": {
+    "workflow_details": {
+      "ui:order": [
+        "name",
+        "description"
+      ]
+    },
+    "event_upload": {
+      "ui:order": [
+        "event_type",
+        "action",
+        "csv_path",
+        "time_zone"
+      ]
+    },
+    "ui:order": [
+      "workflow_details",
+      "er_client_name",
+      "event_upload",
+      "upload_dashboard"
+    ]
+  },
+  "additionalProperties": false
+}
